@@ -1,5 +1,6 @@
-package com.example.galleryapp
+package com.example.galleryapp.Interface
 
+import com.example.galleryapp.ImagesData
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -14,7 +15,7 @@ interface Api {
     fun getImagesList(
         @Query("api_key") api_key: String = "6f102c62f41998d151e5a1b48713cf13",
         @Query("method") method: String = "flickr.photos.getRecent",
-        @Query("per_page") per_page: Int = 20,
+        @Query("per_page") per_page: Int = 150,
         @Query("page") page: Int = 1,
         @Query("format") format: String = "json",
         @Query("nojsoncallback") nojsoncallback: Int = 1,

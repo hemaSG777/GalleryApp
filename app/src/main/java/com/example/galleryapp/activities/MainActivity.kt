@@ -1,9 +1,13 @@
-package com.example.galleryapp
+package com.example.galleryapp.activities
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.galleryapp.Images
+import com.example.galleryapp.ImagesData
+import com.example.galleryapp.Interface.Api
+import com.example.galleryapp.adapter.ImagesAdapter
 import com.example.galleryapp.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
