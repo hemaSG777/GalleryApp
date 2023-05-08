@@ -15,7 +15,7 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    private val imagesAdapter by lazy { ImagesAdapter(this,imageList) }
+    private val imagesAdapter by lazy { ImagesAdapter(this, imageList) }
     private val imageList = ArrayList<Images>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +46,5 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-
     }
 }
