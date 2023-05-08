@@ -1,15 +1,15 @@
-package com.example.galleryapp.Adapter
+package com.example.galleryapp
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.galleryapp.ImagesData
 import com.example.galleryapp.databinding.ItemsImageBinding
 
-class ImagesAdapter(val context: Context) : RecyclerView.Adapter<ImagesAdapter.MyViewHolder>() {
-    private var list = ArrayList<ImagesData>()
+class ImagesAdapter(val context: Context, private var list: List<Images>) :
+    RecyclerView.Adapter<ImagesAdapter.MyViewHolder>() {
+
 
     inner class MyViewHolder(val binding: ItemsImageBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -27,7 +27,7 @@ class ImagesAdapter(val context: Context) : RecyclerView.Adapter<ImagesAdapter.M
         val item = list[position]
         with(holder) {
             Glide.with(context)
-                .load(item.photos.photo.get(0).url_s)
+                .load(item.url_s)
                 .into(binding.imageIv)
         }
     }
@@ -36,9 +36,4 @@ class ImagesAdapter(val context: Context) : RecyclerView.Adapter<ImagesAdapter.M
         return list.size
     }
 
-    fun update(newList: List<ImagesData>) {
-        list = newList as ArrayList<ImagesData>
-        notifyDataSetChanged()
-
-    }
 }

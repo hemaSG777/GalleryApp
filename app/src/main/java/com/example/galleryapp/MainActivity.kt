@@ -1,14 +1,9 @@
-package com.example.galleryapp.activities
+package com.example.galleryapp
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.galleryapp.Adapter.ImagesAdapter
-import com.example.galleryapp.ImagesData
-import com.example.galleryapp.Interface.Api
 import com.example.galleryapp.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,8 +11,8 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    private val imagesAdapter by lazy { ImagesAdapter(this) }
-//    private val imageList = ArrayList<Images>()
+    private val imagesAdapter by lazy { ImagesAdapter(this,imageList) }
+    private val imageList = ArrayList<Images>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -33,24 +28,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun getList() {
         val apiInterface = Api.imagesList()
-            .getImagesList(
-                "flickr.photos.getRecent",
-                "6f102c62f41998d151e5a1b48713cf13",
-                20,
-                1,
-                "json",
-                1,
-                "url_s"
-            )
+            .getImagesList()
         apiInterface.enqueue(object : Callback<ImagesData> {
 
             override fun onResponse(call: Call<ImagesData>, response: Response<ImagesData>) {
-                if (response.body() == null) {
-                    Toast.makeText(this@MainActivity, "Empty", Toast.LENGTH_SHORT).show()
-                } else if (response.isSuccessful) {
-                    Log.e(TAG, "onResponse:${response.body()} ")
-                    imagesAdapter.update(response.body() as ArrayList<ImagesData>)
-                }
+                val responseData = response.body()!!.photos.photo
+                val adapter = ImagesAdapter(this@MainActivity, responseData)
+                binding.imagesRv.adapter = adapter
             }
 
             override fun onFailure(call: Call<ImagesData>, t: Throwable) {

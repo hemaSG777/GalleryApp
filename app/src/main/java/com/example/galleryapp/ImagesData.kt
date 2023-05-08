@@ -1,7 +1,5 @@
 package com.example.galleryapp
 
-import com.google.gson.annotations.SerializedName
-
 data class ImagesData(
     val photos: Data,
     val stat: String

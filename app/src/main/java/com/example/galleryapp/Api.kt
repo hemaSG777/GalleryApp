@@ -1,29 +1,26 @@
-package com.example.galleryapp.Interface
+package com.example.galleryapp
 
-import com.example.galleryapp.ImagesData
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.Field
 import retrofit2.http.GET
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
 interface Api {
-    @GET("flickr.photos.getRecent")
+    @GET("rest")
     fun getImagesList(
-        @Body
-        method: String,
-        api_key: String,
-        per_page: Int,
-        page: Int,
-        format: String,
-        nojsoncallback:Int,
-        extras:String
+        @Query("api_key") api_key: String = "6f102c62f41998d151e5a1b48713cf13",
+        @Query("method") method: String = "flickr.photos.getRecent",
+        @Query("per_page") per_page: Int = 20,
+        @Query("page") page: Int = 1,
+        @Query("format") format: String = "json",
+        @Query("nojsoncallback") nojsoncallback: Int = 1,
+        @Query("extras") extras: String = "url_s"
     ): Call<ImagesData>
+
     companion object {
 
         private val customInterceptor = Interceptor {
@@ -40,7 +37,7 @@ interface Api {
             .connectTimeout(10, TimeUnit.SECONDS)
             .addInterceptor(customInterceptor)
             .build()
-        var BASE_URL = "https://api.flickr.com/services/rest/?"
+        var BASE_URL = "https://api.flickr.com/services/"
 
 
         fun imagesList(): Api {
