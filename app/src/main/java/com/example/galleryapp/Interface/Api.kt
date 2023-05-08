@@ -1,10 +1,13 @@
-package com.example.galleryapp
+package com.example.galleryapp.Interface
 
+import com.example.galleryapp.ImagesData
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
+import retrofit2.http.Field
 import retrofit2.http.GET
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
@@ -12,7 +15,7 @@ import java.util.concurrent.TimeUnit
 interface Api {
     @GET("flickr.photos.getRecent")
     fun getImagesList(
-        @Query("api_key")
+        @Body
         method: String,
         api_key: String,
         per_page: Int,
