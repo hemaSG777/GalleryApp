@@ -21,12 +21,9 @@ class ImagesViewModel : ViewModel() {
             override fun onResponse(call: Call<ImagesData>, response: Response<ImagesData>) {
                 imagesListLiveData.value = response.body()!!.photos.photo
             }
-
             override fun onFailure(call: Call<ImagesData>, t: Throwable) {
                 Log.e(TAG, t.message.toString())
             }
-
-
         })
     }
 

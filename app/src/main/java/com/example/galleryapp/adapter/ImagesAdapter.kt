@@ -37,7 +37,7 @@ class ImagesAdapter(val context: Context, private var list: List<Images>) :
         return list.size
     }
 
-    fun setImagesList(movieList: List<Images>) {
+    fun update(movieList: List<Images>) {
         list = movieList as ArrayList<Images>
         notifyDataSetChanged()
     }
