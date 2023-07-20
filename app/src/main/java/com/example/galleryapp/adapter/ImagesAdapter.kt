@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.galleryapp.Images
 import com.example.galleryapp.databinding.ItemsImageBinding
 
-class ImagesAdapter(val context: Context, private var list: List<Images>) :
+class ImagesAdapter(private val context: Context, private var list: List<Images>) :
     RecyclerView.Adapter<ImagesAdapter.MyViewHolder>() {
 
 

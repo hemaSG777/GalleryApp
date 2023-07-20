@@ -14,7 +14,7 @@ interface RefugeeApi {
     @GET("restrooms")
     fun getRefugeeList(
         @Query("page") page: Int = 1,
-        @Query("per_page") per_page: Int = 10,
+        @Query("per_page") per_page: Int = 100,
         @Query("offset") offset: Int = 0,
         @Query("query") query: String = "san%20francisco",
     ): Call<RefugeeData>

@@ -34,7 +34,6 @@ class RestActivity : AppCompatActivity() {
                 val responseData = response.body()
                 rAdapter.update(responseData!!)
             }
-
             override fun onFailure(call: Call<RefugeeData>, t: Throwable) {
                 Toast.makeText(this@RestActivity, t.message, Toast.LENGTH_SHORT).show()
             }
